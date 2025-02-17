@@ -6,7 +6,6 @@
   "scripts": {
     "start": "node app.js",
     "app": "nodemon app.js",
-    "client":"npm start  --prefix ./client",
     "dev":"npm run app"
   },
   "author": "saquib Anwar",

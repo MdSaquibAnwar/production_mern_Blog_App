@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { Box,  Button,  InputLabel, TextField, Typography } from '@mui/material'
 import toast from 'react-hot-toast'
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:4000";
 
 const CreateBlog = () => {
     // Create A varriable for User 
@@ -36,7 +36,7 @@ const CreateBlog = () => {
     const handleSubmit = async (e)=>{
       e.preventDefault()
       try{
-        const {data} = await axios.post('api/v1/blog/create-blog',{
+        const {data} = await axios.post(`${API_BASE_URL}api/v1/blog/create-blog`,{
             title:inputs.title,
             description:inputs.description,
             image:inputs.image,

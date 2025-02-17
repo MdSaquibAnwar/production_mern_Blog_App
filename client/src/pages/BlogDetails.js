@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useParams,useNavigate } from 'react-router-dom'
 import { Box, Typography,InputLabel,TextField,Button} from '@mui/material'
 import toast from 'react-hot-toast'
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:4000";
 const BlogDetails = () => {
     // Navigatevariable  variable 
     const navigate = useNavigate();
@@ -18,7 +18,7 @@ const BlogDetails = () => {
     const getBlogDetails = async() =>{
 
      try{
-        const {data}= await axios.get(`/api/v1/blog/get-blog/${id}`)
+        const {data}= await axios.get(`${API_BASE_URL}/api/v1/blog/get-blog/${id}`)
         if(data?.success){
            setBlogs(data?.blog);                
            setInputs({
@@ -51,7 +51,7 @@ const BlogDetails = () => {
         const handleSubmit = async (e)=>{
           e.preventDefault()
           try{
-            const {data} = await axios.put(`/api/v1/blog/update-blog/${id}`,{
+            const {data} = await axios.put(`${API_BASE_URL}/api/v1/blog/update-blog/${id}`,{
                 title:inputs.title,
                 description:inputs.description,
                 image:inputs.image,

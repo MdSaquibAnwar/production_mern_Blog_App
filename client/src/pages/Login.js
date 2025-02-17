@@ -5,7 +5,7 @@ import axios from 'axios'
 import {useDispatch} from "react-redux";
 import {authAction} from "../redux/store";
 import toast from 'react-hot-toast';
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:4000";
 const Login = () => {
   // crate navigate 
   const navigate =useNavigate();
@@ -27,7 +27,7 @@ const Login = () => {
 const handleSumbit = async(e)=>{
   e.preventDefault()
   try{
-     const {data} = await  axios.post('/api/v1/user/login',{ email:inputs.email, password:inputs.password});
+     const {data} = await  axios.post(`${API_BASE_URL}/api/v1/user/login`,{ email:inputs.email, password:inputs.password});
      if(data.success){
       localStorage.setItem('userId', data?.user._id);
       

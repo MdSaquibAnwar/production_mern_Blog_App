@@ -2,14 +2,14 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import BlogsCard from '../components/BlogsCard'
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:4000";
 const Blog = () => {
   const [blogs, setBlogs] = useState([])
 
   // get blogs
   const getAllBlogs = async () => {
     try {
-      const response = await axios.get('/api/v1/blog/all-blog')
+      const response = await axios.get(`${API_BASE_URL}/api/v1/blog/all-blog`)
       const data = response.data
       if (data?.success) {
         setBlogs(data?.blogs)

@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react'
 import axios from 'axios'
 import BlogsCard from '../components/BlogsCard';
 import { Box, Typography } from '@mui/material'
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:4000";
 const UserBlogs =  () => {
     const [blogs ,setBlogs] = useState([]);
     // get user blogs 
@@ -10,7 +10,7 @@ const UserBlogs =  () => {
       
        try{
             const id = localStorage.getItem("userId");
-            const {data} = await axios.get(`/api/v1/blog/user-blog/${id}`)
+            const {data} = await axios.get(`${API_BASE_URL}/api/v1/blog/user-blog/${id}`)
             if(data?.success){
               setBlogs(data?.userBLog.blogs)
              }

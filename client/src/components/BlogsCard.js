@@ -11,7 +11,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, IconButton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:4000";
 export default function BlogsCard({ username, image, description, title, id, isUser }) {
   const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ export default function BlogsCard({ username, image, description, title, id, isU
 
   const handleDelete = async () => {
     try {
-      const { data } = await axios.delete(`/api/v1/blog/delete-blog/${id}`);
+      const { data } = await axios.delete(`${API_BASE_URL}/api/v1/blog/delete-blog/${id}`);
       if (data?.success) {
         alert('Blog Deleted');
         //navigate('/my-blogs');
